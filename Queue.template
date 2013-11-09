@@ -1,0 +1,73 @@
+// Filename: Queue.template
+// Date Created: 30/09/2011
+// Author: Lance Baker
+// Course: SENG1120
+// Student Number: c3128034
+
+#include <iostream>
+#include <cstdlib>
+#include "LinkedList.h"
+
+namespace lance_project {
+	
+	// The default constructor for the queue, 
+	// instantiates the linked list.
+	template <class T>
+	Queue<T>::Queue() {
+		this->linked_list = new LinkedList<T>();
+	}
+	
+	// The destructor which deletes the residing linked list.
+	template <class T>
+	Queue<T>::~Queue() {
+		delete this->linked_list;
+	}
+	
+	// The enqueue method adds the received value
+	// to the last position of the internal linked list.
+	template <class T>
+	void Queue<T>::enqueue(T* value) {
+		this->linked_list->addLast(value);
+	}
+	
+	// The dequeue method removes the first element from the
+	// linked list, and returns the data.
+	template <class T>
+	T* Queue<T>::dequeue() {
+		// Ensures the head node exists.
+		if (this->linked_list->getHead() != NULL) {
+			// Fetches the data from the head node.
+			T* data = this->linked_list->getHead()->data();
+			// Removes the head.
+			this->linked_list->removeHead();
+			return data; // Returns the data.
+		}
+		// Otherwise it returns null.
+		return NULL;
+	}
+	
+	// The size method returns the size of the linked list.
+	template <class T>
+	int Queue<T>::size() {
+		return this->linked_list->getSize();
+	}
+	
+	// The isEmpty method returns a boolean indicating whether
+	// the queue is empty or not.
+	template <class T>
+	bool Queue<T>::isEmpty() {
+		return (this->linked_list->getSize() == 0);
+	}
+	
+	// The front method returns the first element (without removing it).
+	template <class T>
+	T* Queue<T>::front() {
+		// Ensures the head node exists.
+		if (this->linked_list->getHead() != NULL) {
+			// Fetches the data from the head node and returns it.
+			return this->linked_list->getHead()->data();
+		}
+		// Otherwise returns null.
+		return NULL;
+	}
+}

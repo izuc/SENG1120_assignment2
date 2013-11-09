@@ -1,0 +1,71 @@
+// Filename: Node.template
+// Date Created: 30/09/2011
+// Author: Lance Baker
+// Course: SENG1120
+// Student Number: c3128034
+#include <cstdlib>
+
+namespace lance_project {
+
+	// The default constructor to the Node. 
+	// It creates a instance without any data.
+	template <class T>
+	Node<T>::Node() {
+	
+	}
+	
+	// The constructor for the Node receives the data
+	// as a parameter, setting the data instance field with the 
+	// received value.
+	template <class T>
+	Node<T>::Node(T* data_field) {
+		this->data_field = data_field;
+	}
+
+	// The constructor receives the data value, and also the Node
+	// that it will be linked to. It sets both instance fields with
+	// the received parameters.
+	template <class T>
+	Node<T>::Node(T* data_field, Node<T>* link_field) {
+		this->data_field = data_field;
+		this->link_field = link_field;
+	}
+	
+	// The destructor deletes the instance fields.
+	template <class T>
+	Node<T>::~Node() {
+		delete this->data_field;
+		delete this->link_field;
+	}
+
+	// The setData method receives the data as a parameter,
+	// setting the instance field with the value received.
+	template <class T>
+	void Node<T>::setData(T* data_field) {
+		this->data_field = data_field;
+	}
+
+	// The setLink method is a setter for the next Node linkage.
+	template <class T>
+	void Node<T>::setLink(Node<T>* link_field) {
+		this->link_field = link_field;
+	}
+
+	// Getter for the data.
+	template <class T>
+	T* Node<T>::data() const {
+		return this->data_field;
+	}
+
+	// Constant Getter for the Node Link.
+	template <class T>
+	const Node<T>* Node<T>::link() const {
+		return this->link_field;
+	}
+
+	// Getter for the Node Link.
+	template <class T>
+	Node<T>* Node<T>::link() {
+		return this->link_field;
+	}
+}
